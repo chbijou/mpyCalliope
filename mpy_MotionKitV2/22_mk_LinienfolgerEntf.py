@@ -1,8 +1,8 @@
 # Micropython Calliope
 # Motionkit 2
 # Linienfolger
-# Herby 07/2025
-# Erweiterung : Stop bei Annäherung
+# 07/2025 Ch. Bijou
+# Erweiterung : Stop bei Annäherung + Sound
 
 from microbit import *
 import mklib as bot

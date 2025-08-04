@@ -1,7 +1,7 @@
 # Micropython Calliopemini3 Motionkit2
 # Fernsteuerung des Motionkit mit Infrarot
 # Fernbedienung SEG KT-8000A
-# Herby 07/2025
+# 07/2025 Ch. Bijou
 
 key_1          = 909
 key_2          = 149

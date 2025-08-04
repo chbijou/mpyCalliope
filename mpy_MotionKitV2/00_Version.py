@@ -1,7 +1,7 @@
 # Micropython
 # CalliopeV3 MotionKitV2
 # Motionkit Version
-# Herby 07/2025
+# 07/2025 Ch. Bijou
 #
 from microbit import *
 

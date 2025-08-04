@@ -1,3 +1,8 @@
+# Module für Motionkit 2
+# Quelle: github.com/tinysuperlab/MotionKit_MicroPython
+# 08/2025 Ch. Bijou
+
+
 from microbit import*
 
 #Initialisiere das MotionKit
@@ -6,14 +11,14 @@ i2c.init()
 def motorL(dir, speed):
     buf_motor1 = bytearray(3)
     buf_motor1[0] = 0x00  # Motor auswählen - 0x00: Motor rechts
-    buf_motor1[1] = dir  # Richtung auswählen 0:vorwärts | 1:rückwärts
+    buf_motor1[1] = dir   # Richtung auswählen 0:vorwärts | 1:rückwärts
     buf_motor1[2] = speed   # Geschwindigkeit von 0 - 255
     i2c.write(0x10, buf_motor1)
 
 def motorR(dir, speed):
     buf_motor2 = bytearray(3)
     buf_motor2[0] = 0x02   #Motor auswählen - 0x02: Motor links
-    buf_motor2[1] = dir   #Richtung auswählen 0:vorwärts | 1:rückwärts
+    buf_motor2[1] = dir    #Richtung auswählen 0:vorwärts | 1:rückwärts
     buf_motor2[2] = speed   #Geschwindigkeit von 0 - 255
     i2c.write(0x10, buf_motor2)
 

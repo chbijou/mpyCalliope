@@ -1,7 +1,7 @@
 # Micropython Calliope
 # Motionkit 2
 # Linienfolger
-# Herby 07/2025
+# 07/2025 Ch. Bijou
 
 from microbit import *
 import mklib as bot
