@@ -18,33 +18,38 @@ def motorR(dir, speed):
     buf_motor2[2] = speed   #Geschwindigkeit von 0 - 255
     i2c.write(0x10, buf_motor2)
 
-def ledR(on_off):
+def ledR(on_off): #ok
     buf_led = bytearray(2)
     buf_led[0]=0
-    if on_off == 1 : buf_led[1] = 0x02
-    else:            buf_led[1] = 0xFD
+    if on_off == 1 : buf_led[1] |= 0x02
+    else:            buf_led[1] &= 0xFD
     i2c.write(0x21, buf_led)
     
-def ledL(on_off):
+def ledL(on_off): #ok
     buf_led = bytearray(2) 
     buf_led[0] = 0
-    if on_off == 1 : buf_led[1] = 0x01
-    else:            buf_led[1] = 0xFE
+    if on_off == 1 : buf_led[1] |= 0x01
+    else:            buf_led[1] &= 0xFE
     i2c.write(0x21, buf_led)
 
-def rgbled(red, green, blue):
-    buf_rgbLed_red = bytearray(2)
-    buf_rgbLed_red[0] = 0x18   #Auswahl rote LED
-    buf_rgbLed_red[1] = red   #Farbwert von 0 - 255
-    buf_rgbLed_green = bytearray(2)
-    buf_rgbLed_green[0] = 0x19   #Auswahl grüne LED
-    buf_rgbLed_green[1] = green   #Farbwert von 0 - 255
-    buf_rgbLed_blue = bytearray(2)
-    buf_rgbLed_blue[0] = 0x1A   #Auswahl blaue LED
-    buf_rgbLed_blue[1] = blue   #Farbwert von 0 - 255
-    i2c.write(0x10, buf_rgbLed_red)
-    i2c.write(0x10, buf_rgbLed_green)
-    i2c.write(0x10, buf_rgbLed_blue)
+def ledB(on_off): # ok
+    buf_led = bytearray(2)
+    buf_led[0] = 0
+    if on_off == 1 : buf_led[1] |= 0x03
+    else:            buf_led[1] &= 0xFE
+    i2c.write(0x21, buf_led)
+    
+def rgbLed(red, green, blue):
+    # Alle 4 RGB-LEDs gleichzeitig schalten
+    # Prinzip MotionKit2
+    buf_rgbLed = bytearray(5)
+    buf_rgbLed[0] = 0x03
+    for index in range(4):
+        buf_rgbLed[1] = index+1
+        buf_rgbLed[2] = red
+        buf_rgbLed[3] = green
+        buf_rgbLed[4] = blue
+        i2c.write(0x22, buf_rgbLed)
 
 def servoS1(angle):
     buf_servoS1 = bytearray(2)

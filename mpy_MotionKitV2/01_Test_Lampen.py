@@ -34,5 +34,6 @@ for i in range(2):
     bot.rgbLed(255,255,255)
     utime.sleep_ms(1000)
     bot.rgbLed(0,0,0)
+    utime.sleep_ms(1000)
 
 # FIN

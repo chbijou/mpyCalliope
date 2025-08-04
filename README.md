@@ -1,6 +1,9 @@
 # mypCalliope
 
 Micrppython für Calliope Mini 3
+zur Zeit mit MICROBIT-Python auf Calliope
 ===============================
-mpy Module für Motionkit 2
-mpy Module für Callibot 2
+Module für Motionkit 2
+Module für Callibot 2
+Tests und Anwendungen
+
