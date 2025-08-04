@@ -1,0 +1,29 @@
+# MotionKit MicroPython Projekt
+
+In dieser Datei finden sich alle I2C-Adressen, um das MotionKit per MicroPython zu steuern.
+
+Nach der Initialisierung stehen folgende Adressen zur Verfügung:
+
+
+
+| Adresse | R/W    | Funktion                         | Wertebereich   | Bemerkung                                         |
+|---------|--------|----------------------------------|----------------|---------------------------------------------------|
+| 0x00    | R/W    | Richtung: linker Motor           | 0-1            | 0 = Vorwärts, 1 = Rückwärts                       |
+| 0x01    | R/W    | Geschwindigkeit: linker Motor    | 0-255          |                                                   |
+| 0x02    | R/W    | Richtung: rechter Motor          | 0-1            | 0 = Vorwärts, 1 = Rückwärts                       |
+| 0x03    | R/W    | Geschwindigkeit: rechter Motor   | 0-255          |                                                   |
+| 0x0B    | R/W    | LED_L                            | 0-1            | 0 = AUS, Andere = EIN                             |
+| 0x0C    | R/W    | LED_R                            | 0-1            | 0 = AUS, Andere = EIN                             |
+| 0x14    | R/W    | Servo 1 Winkel                   | 0-180          |                                                   |
+| 0x15    | R/W    | Servo 2 Winkel                   | 0-180          |                                                   |
+| 0x18    | R/W    | RGB - Rot                        | 0-255          |                                                   |
+| 0x19    | R/W    | RGB - Grün                       | 0-255          |                                                   |
+| 0x1A    | R/W    | RGB - Blau                       | 0-255          |                                                   |
+| 0x1D    | R      | Schwarze Linie erkannt?          | 0-3 (Bit0/Bit1)| Bit0 = ADC_0, Bit1 = ADC_1                        |
+| 0x1E    | R      | Linienfolger Sensor links        | 0-255          | 8-Bit Wert                                        |
+| 0x20    | R      | Linienfolger Sensor rechts       | 0-255          | 8-Bit Wert                                        |
+| 0x28    | R      | Ultraschallsensor - High Byte    | 0-255          | Einheit: cm, -1 = außer Reichweite, 0 = kein Wert |
+| 0x29    | R      | Ultraschallsensor - Low Byte     | 0-255          | Einheit: cm                                       |
+| 0x2B    | R      | IR-Empfang                       | -              |                                                   |
+| 0x32    | R      | Länge der Versionsnummer         | 0-20           |                                                   |
+| 0x33    | R      | Versionsnummer                   | String         |                                                   |
