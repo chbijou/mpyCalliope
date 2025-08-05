@@ -1,9 +1,10 @@
 # Micropython
-# CalliopeV3 MotionKitV2
+# CalliopeV3 Calli:bot2
 # Entfernungsmesser
-# 07/2025 Ch. Bijou
+# 08/2025 Ch. Bijou
+# Testumgebung: thonny
 
-import mklib as bot 
+import cblib as bot 
 from microbit import *
 import utime
 

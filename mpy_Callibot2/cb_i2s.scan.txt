@@ -9,6 +9,10 @@ Type "help()" for more information.
 33 x021 0x00       Front-LED 2 Bytes
         0x00       on/off  Bitmuster?
         
+33 0x21 0x80       Entfernung 3 Bytes 
+        0x00       dist High 0x00 - 0xFF
+        0x00       dist Low  0x00 - 0xFF
+        
 34 0x22 0x03       RGB- LED  5 Bytes
         0x00       index 1:LV; 2:LH; 3:RH; 4:RV 
         0x00       rot   0x00 - 0xFF

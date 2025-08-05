@@ -1,4 +1,4 @@
-#Micropython Calliope mini3 Callibit2
+#Micropython Calliope mini3 Calli:bot2
 from microbit import*
 
 #Initialisiere Callibot
@@ -6,17 +6,17 @@ i2c.init()
 
 def motorL(dir, speed):
     buf_motor1 = bytearray(3)
-    buf_motor1[0] = 0x00  # Motor auswählen - 0x00: Motor rechts
-    buf_motor1[1] = dir  # Richtung auswählen 0:vorwärts | 1:rückwärts
+    buf_motor1[0] = 0x00    # Motor auswählen - 0x00: Motor links
+    buf_motor1[1] = dir     # Richtung auswählen 0:vorwärts | 1:rückwärts
     buf_motor1[2] = speed   # Geschwindigkeit von 0 - 255
-    i2c.write(0x10, buf_motor1)
+    i2c.write(0x20, buf_motor1)
 
 def motorR(dir, speed):
     buf_motor2 = bytearray(3)
-    buf_motor2[0] = 0x02   #Motor auswählen - 0x02: Motor links
-    buf_motor2[1] = dir   #Richtung auswählen 0:vorwärts | 1:rückwärts
+    buf_motor2[0] = 0x02    #Motor auswählen - 0x02: Motor rechts
+    buf_motor2[1] = dir     #Richtung auswählen 0:vorwärts | 1:rückwärts
     buf_motor2[2] = speed   #Geschwindigkeit von 0 - 255
-    i2c.write(0x10, buf_motor2)
+    i2c.write(0x20, buf_motor2)
 
 def ledR(on_off): #ok
     buf_led = bytearray(2)
@@ -39,17 +39,33 @@ def ledB(on_off): # ok
     else:            buf_led[1] &= 0xFE
     i2c.write(0x21, buf_led)
     
-def rgbLed(red, green, blue):
+def rgbled(red, green, blue): #ok
     # Alle 4 RGB-LEDs gleichzeitig schalten
     # Prinzip MotionKit2
-    buf_rgbLed = bytearray(5)
-    buf_rgbLed[0] = 0x03
+    buf_rgbled = bytearray(5)
+    buf_rgbled[0] = 0x03
     for index in range(4):
-        buf_rgbLed[1] = index+1
-        buf_rgbLed[2] = red
-        buf_rgbLed[3] = green
-        buf_rgbLed[4] = blue
-        i2c.write(0x22, buf_rgbLed)
+        buf_rgbled[1] = index+1
+        buf_rgbled[2] = red
+        buf_rgbled[3] = green
+        buf_rgbled[4] = blue
+        i2c.write(0x22, buf_rgbled)
+
+def CBrgbled(position,red, green, blue): #ok
+    # Zusatzfunktion fuer Calli:bot2
+    # Beim Calli:bot2 lassen sich die RGB leds einzeln ansteuern
+    # Positionen sind "LV" "RV" "LH" "RH"
+    buf_rgbled = bytearray(5)
+    buf_rgbled[0] = 0x03
+    if position   == "LV": buf_rgbled[1] = 1
+    elif position == "LH": buf_rgbled[1] = 2
+    elif position == "RH": buf_rgbled[1] = 3
+    elif position == "RV": buf_rgbled[1] = 4
+    buf_rgbled[2] = red
+    buf_rgbled[3] = green
+    buf_rgbled[4] = blue
+    i2c.write(0x22, buf_rgbled)
+    
 
 def servoS1(angle):
     buf_servoS1 = bytearray(2)
@@ -86,13 +102,10 @@ def black_line():
     data = i2c.read(0x10,1)[0]
     return(data)
 
-def read_ultraschall():
-    i2c.write(0x10, bytearray([0x28]))   #Trigger-Signal an den Ultraschallsensor
-    sleep(20)
-    data = i2c.read(0x10, 2)   #Auslesen des Signals
-    distance = (data[0] << 8) | data[1]
-    return distance
-
+def read_ultraschall(): #ok
+    buf = i2c.read(0x21,3)
+    return  int((256 * buf[1] + buf[2]) / 10)
+    
 def read_infrared():
     i2c.write(0x10, bytearray([0x2B]))
     buf = i2c.read(0x10, 4)   #Auslesen des Signals
