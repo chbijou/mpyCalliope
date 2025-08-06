@@ -1,15 +1,15 @@
 # Micropython Calliope
-# Motionkit 2
+# Callibot
 # Linienfolger
 # 07/2025 Ch. Bijou
 # Erweiterung : Stop bei Annäherung + Sound
 
 from microbit import *
-import mklib as bot
+import cblib as bot
 import utime
 import music
 
-tempo_normal  = 40
+tempo_normal  = 60
 tempo_langsam = int(tempo_normal / 3)
 tempo_schnell = int(tempo_normal * 3)
 richtung      = 99 # 0: vorwaerts, 1: rechts, 2: links

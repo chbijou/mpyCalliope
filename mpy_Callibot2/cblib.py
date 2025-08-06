@@ -1,17 +1,19 @@
 #Micropython Calliope mini3 Calli:bot2
+#Vergl. mklib (für Motionkit2)
+
 from microbit import*
 
 #Initialisiere Callibot
 i2c.init()
 
-def motorL(dir, speed):
+def motorL(dir, speed): #ok
     buf_motor1 = bytearray(3)
     buf_motor1[0] = 0x00    # Motor auswählen - 0x00: Motor links
     buf_motor1[1] = dir     # Richtung auswählen 0:vorwärts | 1:rückwärts
     buf_motor1[2] = speed   # Geschwindigkeit von 0 - 255
     i2c.write(0x20, buf_motor1)
 
-def motorR(dir, speed):
+def motorR(dir, speed): #ok
     buf_motor2 = bytearray(3)
     buf_motor2[0] = 0x02    #Motor auswählen - 0x02: Motor rechts
     buf_motor2[1] = dir     #Richtung auswählen 0:vorwärts | 1:rückwärts
@@ -93,13 +95,16 @@ def read_lineFollowL():
     # Überprüfen, ob das Bit für den linken Sensor gesetzt ist
     return 0 if (data & 0x02) != 0 else 1
 
-def black_line():
+def black_line(): #ok
 # 0: ganz ausserhalb
 # 1: rechts ausserhalb
 # 2: links ausserhalb
 # 3_ mitten auf der Spur
-    i2c.write(0x10,bytearray([0x1D]))
-    data = i2c.read(0x10,1)[0]
+    data = i2c.read(0x21,1)[0]
+    # etwas anders als bei MotionKit2
+    data = data & 0x0F
+    if   data == 0: data = 3
+    elif data == 3: data = 0
     return(data)
 
 def read_ultraschall(): #ok

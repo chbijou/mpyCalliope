@@ -1,7 +1,7 @@
 # Module für Motionkit 2
 # Quelle: github.com/tinysuperlab/MotionKit_MicroPython
 # 08/2025 Ch. Bijou
-
+# Vergl. cblib (für Callibot2)
 
 from microbit import*
 
@@ -45,19 +45,19 @@ def ledB(on_off):
     buf_led[0] = 0x0B # linke LED
     i2c.write(0x10, buf_led)
 
-def rgbLed(red, green, blue):
-    buf_rgbLed_red = bytearray(2)
-    buf_rgbLed_red[0] = 0x18   #Auswahl rote LED
-    buf_rgbLed_red[1] = red   #Farbwert von 0 - 255
-    buf_rgbLed_green = bytearray(2)
-    buf_rgbLed_green[0] = 0x19   #Auswahl grüne LED
-    buf_rgbLed_green[1] = green   #Farbwert von 0 - 255
-    buf_rgbLed_blue = bytearray(2)
-    buf_rgbLed_blue[0] = 0x1A   #Auswahl blaue LED
-    buf_rgbLed_blue[1] = blue   #Farbwert von 0 - 255
-    i2c.write(0x10, buf_rgbLed_red)
-    i2c.write(0x10, buf_rgbLed_green)
-    i2c.write(0x10, buf_rgbLed_blue)
+def rgbled(red, green, blue):
+    buf_rgbled_red = bytearray(2)
+    buf_rgbled_red[0] = 0x18   #Auswahl rote LED
+    buf_rgbled_red[1] = red   #Farbwert von 0 - 255
+    buf_rgbled_green = bytearray(2)
+    buf_rgbled_green[0] = 0x19   #Auswahl grüne LED
+    buf_rgbled_green[1] = green   #Farbwert von 0 - 255
+    buf_rgbled_blue = bytearray(2)
+    buf_rgbled_blue[0] = 0x1A   #Auswahl blaue LED
+    buf_rgbled_blue[1] = blue   #Farbwert von 0 - 255
+    i2c.write(0x10, buf_rgbled_red)
+    i2c.write(0x10, buf_rgbled_green)
+    i2c.write(0x10, buf_rgbled_blue)
 
 def servoS1(angle):
     buf_servoS1 = bytearray(2)

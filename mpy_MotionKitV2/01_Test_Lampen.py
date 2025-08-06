@@ -1,6 +1,6 @@
 # Micropython
 # CalliopeV3 MotionKitV2
-# LampenTest Front LED und RGB_LED
+# LampenTest Front led und RGB_led
 # 07/2025 Ch. Bijou
 
 import mklib as bot
@@ -25,15 +25,15 @@ for i in range(2):
 
 for i in range(2):
     
-    bot.rgbLed(255,0,0)
+    bot.rgbled(255,0,0)
     utime.sleep_ms(1000)    
-    bot.rgbLed(0,255,0)
+    bot.rgbled(0,255,0)
     utime.sleep_ms(1000)
-    bot.rgbLed(0,0,255)    
+    bot.rgbled(0,0,255)    
     utime.sleep_ms(1000)
-    bot.rgbLed(255,255,255)
+    bot.rgbled(255,255,255)
     utime.sleep_ms(1000)
-    bot.rgbLed(0,0,0)
+    bot.rgbled(0,0,0)
     utime.sleep_ms(1000)
 
 # FIN

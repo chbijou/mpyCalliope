@@ -8,7 +8,7 @@ import cblib as bot
 from microbit import *
 import utime
 
-tempo=50  # 0 - 255
+tempo=255  # 0 - 255
 for i in range(2):
     bot.ledR(1)
     bot.motorR(0,tempo)

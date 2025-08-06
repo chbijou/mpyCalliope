@@ -26,25 +26,25 @@ licht_aus = Image("00000:"
                   "00000")
 
 def nach_vorn():
-    bot.rgbLed(0,0,0)
+    bot.rgbled(0,0,0)
     bot.ledR(1); bot.ledL(1)
     bot.motorR(0,tempo_normal)
     bot.motorL(0,tempo_normal)
     
 def nach_rechts():
-    bot.rgbLed(0,0,0)
+    bot.rgbled(0,0,0)
     bot.ledR(1); bot.ledL(0)
     bot.motorR(0,tempo_langsam)
     bot.motorL(0,tempo_schnell)
     
 def nach_links():
-    bot.rgbLed(0,0,0)
+    bot.rgbled(0,0,0)
     bot.ledR(0); bot.ledL(1)
     bot.motorR(0,tempo_langsam)
     bot.motorL(0,tempo_schnell)
 
 def halt():
-    bot.rgbLed(0,0,0)
+    bot.rgbled(0,0,0)
     bot.ledR(0); bot.ledL(0)
     bot.motorR(0,0)
     bot.motorL(0,0)
@@ -66,13 +66,13 @@ def lauf():
          nach_vorn()
 
     elif spur == 0 and richtung == 1: # scharf nach links
-         bot.rgbLed(120,0,0)           # rote Sonderbeleuchtung
+         bot.rgbled(120,0,0)           # rote Sonderbeleuchtung
          bot.ledR(0); mk.ledL(1)       # rote Frontleuchte
          bot.motorR(0,tempo_schnell)   # rechter Motor schnell
          bot.motorL(0,tempo_langsam)   # linker Motor langsam
 
     elif spur == 0 and richtung == 2: # scharf nach rechts
-         bot.rgbLed(0,120,0)           # gruene Sonderbeleuchtung
+         bot.rgbled(0,120,0)           # gruene Sonderbeleuchtung
          bot.ledR(1); mk.ledL(0)       # gruene Frontleuchte
          bot.motorR(0,tempo_langsam)   # rechter Motor langsam
          bot.motorL(0,tempo_schnell)   # linker Motor schnell

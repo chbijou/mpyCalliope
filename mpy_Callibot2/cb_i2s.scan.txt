@@ -6,10 +6,19 @@ Type "help()" for more information.
 >>> i2c.scan()
 [32, 33, 34, 35, 36, 37, 38, 39]
 >>> 
-33 x021 0x00       Front-LED 2 Bytes
-        0x00       on/off  Bitmuster?
+32 0x20 0x00       Motor 0x00 links; 0x02 rechts 3 Bytes
+        0x00       Richtung 0x00 vor; 0x01 rück
+        0x00       Geschwindigkeit 0 - 255
         
-33 0x21 0x80       Entfernung 3 Bytes 
+33 0x21 0x00       Front-LED 2 Bytes
+        0x00       on/off  Bitmuster
+
+33 0x21 0x00       Linienfolger 1 Byte 0x80: mitte,
+                                       0x81: rechts aussen
+                                       0x82: links aussen
+                                       0x83: ganz aussen
+        
+33 0x21 0x80       Entfernung 3 Bytes    
         0x00       dist High 0x00 - 0xFF
         0x00       dist Low  0x00 - 0xFF
         
