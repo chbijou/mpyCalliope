@@ -1,7 +1,6 @@
-# Micropython
-# CalliopeV3 MotionKitV2
-# LampenTest Front LED und RGB_LED
-# 07/2025 Ch. Bijou
+# Micropython Calliope mini3, Callibot 2E
+# Ch. Bijou
+# 08/2025
 
 import cblib as bot
 from microbit import *
@@ -18,9 +17,9 @@ for i in range(2):
     bot.ledL(0)
     utime.sleep_ms(500)
 
-    bot.ledB(1)           # rechts + links
+    bot.ledR(1); bot.ledL(1)  # rechts + links
     utime.sleep_ms(500)
-    bot.ledB(0)
+    bot.ledR(0); bot.ledL(0)
     utime.sleep_ms(500)
     
 #RGB LED Unterseit

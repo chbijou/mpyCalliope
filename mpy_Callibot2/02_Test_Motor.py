@@ -9,6 +9,7 @@ from microbit import *
 import utime
 
 tempo=255  # 0 - 255
+"""
 for i in range(2):
     bot.ledR(1)
     bot.motorR(0,tempo)
@@ -25,6 +26,13 @@ for i in range(2):
     utime.sleep_ms(2000)
     bot.ledL(0)
     bot.motorL(0,0)
+"""
+for i in range(25):
+    tempo = i * 10
+    print("Tempo = ",tempo)
+    bot.motorR(0,tempo); bot.motorL(0,tempo)
+    utime.sleep_ms(5000)
+bot.motorR(0,0); bot.motorL(0,0)
     
 #FIN    
     

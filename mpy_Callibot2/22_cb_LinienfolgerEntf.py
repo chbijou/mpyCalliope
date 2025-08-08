@@ -9,12 +9,33 @@ import cblib as bot
 import utime
 import music
 
-tempo_normal  = 60
-tempo_langsam = int(tempo_normal / 3)
-tempo_schnell = int(tempo_normal * 3)
+tempo_normal  = 120
+tempo_langsam = int(tempo_normal / 2)
+tempo_schnell = int(tempo_normal * 2)
 richtung      = 99 # 0: vorwaerts, 1: rechts, 2: links
 run_flag      = 0  # 0: stop, 1: run
 abstand       = 10 # kritischer Abstand 
+# Spuranzeige
+spur_la =  Image("96666:" # links aussen
+                 "96666:"
+                 "96666:"
+                 "96666:"
+                 "96666")
+spur_ra =  Image("66669:" # rechts aussen
+                 "66669:"
+                 "66669:"
+                 "66669:"
+                 "66669")
+spur_mi =  Image("66966:" # mittig
+                 "66966:"
+                 "66966:"
+                 "66966:"
+                 "66966")
+spur_ga =  Image("66666:" # ganz  aussen
+                 "66666:"
+                 "66666:"
+                 "66666:"
+                 "66666")    
 
 pfeil_r =  Image("00900:"
                  "09009:"
@@ -51,28 +72,30 @@ def halt():
 def lauf():
     global richtung
     spur = bot.black_line() 
-    display.show(spur)
+#    display.show(spur)
     if   spur == 3:      # 3: mitte
+         display.show(spur_mi)
          richtung = 0
          nach_vorn()
     elif spur == 1:      # 1: rechts aussen
+         display.show(spur_ra)
          richtung= 1
          nach_links()
     elif spur == 2:      # 2: links aussen
+         display.show(spur_la)
          richtung = 2
-         nach_rechts()   
-    elif spur == 0 and richtung == 0: # 0: ganz aussen
-         richtung = 2
-         
-    elif spur == 0 and richtung == 1:  # scharf nach links
-         bot.ledR(0); bot.ledL(1)      # rote Frontleuchte
-         bot.motorR(0,tempo_schnell)   # rechter Motor schnell
-         bot.motorL(0,tempo_langsam)   # linker Motor langsam
-
-    elif spur == 0 and richtung == 2: # scharf nach rechts
-         bot.ledR(1); bot.ledL(0)      # gruene Frontleuchte
-         bot.motorR(0,tempo_langsam)   # rechter Motor langsam
-         bot.motorL(0,tempo_schnell)   # linker Motor schnell
+         nach_rechts()
+    elif spur == 0:      # ganz ausserhalb
+         display.show(spur_ga)
+         if   richtung == 0: richtung = 2
+         elif richtung == 1:  # scharf nach links
+              bot.ledR(0); bot.ledL(1)      # rote Frontleuchte
+              bot.motorR(0,tempo_schnell)   # rechter Motor schnell
+              bot.motorL(0,tempo_langsam)   # linker Motor langsam
+         elif richtung == 2: # scharf nach rechts
+              bot.ledR(1); bot.ledL(0)      # gruene Frontleuchte
+              bot.motorR(0,tempo_langsam)   # rechter Motor langsam
+              bot.motorL(0,tempo_schnell)   # linker Motor schnell
 
 def start_bot():
      halt()
