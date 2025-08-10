@@ -8,37 +8,37 @@ from microbit import*
 i2c.init()
 # ---------- Motoren -----------------
 def motorL(dir, speed): # ok
-    buf_motor = bytearray(4)
-    buf_motor[0] = 0x02    # Motoren                              
-    buf_motor[1] = 0x01    # Moror 1 - rechts
-    buf_motor[2] = dir     #Richtung auswählen 0:vorwärts | 1:rückwärts
-    buf_motor[3] = speed   # Geschwindigkeit von 0 - 255
-    i2c.write(0x22, buf_motor)
+    buf_motorL = bytearray(4)
+    buf_motorL[0] = 0x02    # Motoren                              
+    buf_motorL[1] = 0x01    # Moror 1 - rechts
+    buf_motorL[2] = dir     #Richtung auswählen 0:vorwärts | 1:rückwärts
+    buf_motorL[3] = speed   # Geschwindigkeit von 0 - 255
+    i2c.write(0x22, buf_motorL)
 
 def motorR(dir, speed): # ok
-    buf_motor = bytearray(4)
-    buf_motor[0] = 0x02    # Motoren                               
-    buf_motor[1] = 0x02    # Moror 2 - links 
-    buf_motor[2] = dir     #Richtung auswählen 0:vorwärts | 1:rückwärts
-    buf_motor[3] = speed   # Geschwindigkeit von 0 - 255
-    i2c.write(0x22, buf_motor)
+    buf_motorR = bytearray(4)
+    buf_motorR[0] = 0x02    # Motoren                               
+    buf_motorR[1] = 0x02    # Moror 2 - links 
+    buf_motorR[2] = dir     #Richtung auswählen 0:vorwärts | 1:rückwärts
+    buf_motorR[3] = speed   # Geschwindigkeit von 0 - 255
+    i2c.write(0x22, buf_motorR)
               
 #------------ LEDs --------------------------
 def ledR(on_off): # Front LED rechts (gruen)
-    buf_led = bytearray(5)
-    buf_led[0] = 0x03   # LEDs steuern
-    buf_led[1] = 0x06   # LED rechts
-    if on_off == 1 : buf_led[2] = 0x0F # pwm 1-15
-    else:            buf_led[2] = 0x00 # aus
-    i2c.write(0x22, buf_led)
+    buf_ledR = bytearray(5)
+    buf_ledR[0] = 0x03   # LEDs steuern
+    buf_ledR[1] = 0x06   # LED rechts
+    if on_off == 1 : buf_ledR[2] = 0x0F # pwm 1-15
+    else:            buf_ledR[2] = 0x00 # aus
+    i2c.write(0x22, buf_ledR)
     
 def ledL(on_off): # Front LED links (rot)
-    buf_led = bytearray(5)
-    buf_led[0] = 0x03   # LEDs steuern
-    buf_led[1] = 0x05   # LED links
-    if on_off == 1 : buf_led[2] = 0x0F # pwm 1-15
-    else:            buf_led[2] = 0x00 # aus
-    i2c.write(0x22, buf_led)
+    buf_ledL = bytearray(5)
+    buf_ledL[0] = 0x03   # LEDs steuern
+    buf_ledL[1] = 0x05   # LED links
+    if on_off == 1 : buf_ledL[2] = 0x0F # pwm 1-15
+    else:            buf_ledL[2] = 0x00 # aus
+    i2c.write(0x22, buf_ledL)
     
 def rgbled(red, green, blue): # ok
     # Alle 4 RGB-LEDs gleichzeitig schalten
@@ -68,17 +68,21 @@ def CBrgbled(position,red, green, blue): # ok
     i2c.write(0x22, buf_rgbled)
     
 # -------------------Servo ----------------
-def servoS1(angle): # Test offen
+def servoS1(angle): # ok
+    if angle > 180: angle = 180
+    if angle < 0:   angle = 0  
     buf_servoS1 = bytearray(2)
     buf_servoS1[0] = 0x14   #Auswahl ServoS1
     buf_servoS1[1] = angle   #Winkel von 0 - 180
-    i2c.write(0x10, buf_servoS1)
+    i2c.write(0x20, buf_servoS1)
 
-def servoS2(angle): # Test offen
+def servoS2(angle): # ok
+    if angle > 180: angle = 180
+    if angle < 0:   angle = 0
     buf_servoS2 = bytearray(2)
     buf_servoS2[0] = 0x15   #Auswahl ServoS2
     buf_servoS2[1] = angle   #Winkel von 0 - 180
-    i2c.write(0x10, buf_servoS2)
+    i2c.write(0x20, buf_servoS2)
     
 # --------- Linienfolger --------------
 def black_line(): # ok

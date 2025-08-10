@@ -1,6 +1,7 @@
 # Micropython
 # CalliopeV3 
 # Callibot 2E
+# i2c-Adresse 0x22 I2c-Register 0x82
 # 08/2025 Ch. Bijou
 
 from microbit import *

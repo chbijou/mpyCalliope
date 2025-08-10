@@ -5,6 +5,7 @@
 # Erweiterung : Stop bei Annäherung + Sound
 
 from microbit import *
+
 import cblib as bot
 import utime
 import music

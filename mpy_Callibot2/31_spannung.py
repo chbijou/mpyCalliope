@@ -1,3 +1,8 @@
+# Micropython Calliopemini3 Callibot2
+# Versorgungsspannung auslesen
+# i2c-Adresse 0x22 i2c-Register 0x83
+# Ch. Bijou 08/2025
+
 from microbit import *
 
 i2c.init()
