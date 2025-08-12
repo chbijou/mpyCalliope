@@ -4,6 +4,7 @@
 # 08/2025
 
 from microbit import*
+import utime
 
 i2c.init()
 # ---------- Motoren -----------------
@@ -104,6 +105,7 @@ def read_ultraschall(): # ok
     buf=bytearray(3)
     buf[0] = 0x81
     i2c.write(0x22,buf)
+    utime.sleep_ms(20)
     buf = i2c.read(0x22,3)
     return  int((buf[1] + 256 *buf[2]) / 10)
     
