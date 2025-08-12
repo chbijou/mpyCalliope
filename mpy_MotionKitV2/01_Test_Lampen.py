@@ -18,10 +18,7 @@ for i in range(2):
     bot.ledL(0)
     utime.sleep_ms(500)
 
-    bot.ledB(1)           # rechts + links
-    utime.sleep_ms(500)
-    bot.ledB(0)
-    utime.sleep_ms(500)
+
 
 for i in range(2):
     
